@@ -1,4 +1,4 @@
 from .base import *
 
 DEBUG = False
-ALLOWED_HOSTS = ['*.pythonanywhere.com']
+ALLOWED_HOSTS = ['khchine5.pythonanywhere.com']
