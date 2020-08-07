@@ -158,7 +158,7 @@ REST_FRAMEWORK = {
         #'rest_framework_swagger.renderers.OpenAPIRenderer',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-    'EXCEPTION_HANDLER': 'hipo_drf_exceptions.handler',
+    #'EXCEPTION_HANDLER': 'hipo_drf_exceptions.handler',
 
 }
 
