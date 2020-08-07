@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('product.urls')),
     path("api-token-auth/", ObtainAuthToken.as_view()),
+    path('rest-auth/', include('rest_auth.urls')),
 ]
