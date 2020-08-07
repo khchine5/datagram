@@ -150,13 +150,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.BrowsableAPIRenderer',
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.CoreJSONRenderer',
+    #'DEFAULT_RENDERER_CLASSES': (
+    #    'rest_framework.renderers.BrowsableAPIRenderer',
+    #    'rest_framework.renderers.JSONRenderer',
+    #    'rest_framework.renderers.CoreJSONRenderer',
         #'rest_framework_swagger.renderers.SwaggerUIRenderer',
         #'rest_framework_swagger.renderers.OpenAPIRenderer',
-    ),
+    #),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     #'EXCEPTION_HANDLER': 'hipo_drf_exceptions.handler',
 
