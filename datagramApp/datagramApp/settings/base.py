@@ -157,3 +157,7 @@ CORS_ORIGIN_WHITELIST = [
     "https://react-datagram.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = [
+    "https://react-datagram.vercel.app",
+]
