@@ -33,7 +33,11 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'product',
-    'rest_framework',
+    "django_filters",
+    "rest_framework",
+    "rest_framework.authtoken",
+    'corsheaders',
+    'rest_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,7 +132,8 @@ STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 
 REST_FRAMEWORK = {
     #'DEFAULT_PAGINATION_CLASS': 'exampleapp.pagination.PageNumberWithPageSizePagination',
-    #'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.OrderingFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
@@ -136,9 +142,16 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # SessionAuthentication is intentionally removed, see:
         # https://github.com/encode/django-rest-framework/issues/6104'
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]
