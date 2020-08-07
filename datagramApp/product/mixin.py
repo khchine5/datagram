@@ -11,3 +11,6 @@ class SeqNamedMixin(models.Model):
     class Meta:
         ordering = ['-sequence']
         abstract = True
+
+    def __str__(self):
+        return self.name
