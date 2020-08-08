@@ -25,7 +25,8 @@ https://khchine5.pythonanywhere.com/admin
 
 API
 ---
-The API are created thanks to https://www.django-rest-framework.org/
+The API are created thanks to https://www.django-rest-framework.org/.
+
 The API endpoints are availables only for authenticated users.
 
 API are available at
