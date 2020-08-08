@@ -14,6 +14,7 @@ Install
 Run
 ---
 To run the application
+
     $ python manage.py runserver
 
 Django Admin
