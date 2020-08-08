@@ -23,7 +23,9 @@ class Store(SeqNamedMixin):
 class Product(SeqNamedMixin):
     barcode = models.CharField(
         verbose_name="Barcode", max_length=150, unique=True)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    description = models.TextField(verbose_name="Description", blank=True)
+    price = models.FloatField(verbose_name="Price", default=0)
+    stores = models.ManyToManyField(Store, verbose_name="Stores")
 
     class Meta:
         app_label = 'product'
