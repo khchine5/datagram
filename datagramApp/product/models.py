@@ -23,23 +23,27 @@ class Chain(SeqNamedMixin):
         count = 0
         if self.scrap_api:
             scraper = cloudscraper.create_scraper()
-            res = scraper.get(self.scrap_api, headers=headers).text
+            res = scraper.get(self.scrap_api.format(0), headers=headers).text
             res = json.loads(res)
-            for p in res.get('data', {}):
-                attributes = p.get('attributes', {})
-                price = attributes.get('price', {})
-                prod, created = Product.objects.get_or_create(
-                    barcode=attributes.get('ean'))
-                
-                prod.name = attributes.get('title', '')
-                    # availability= ,
-                prod.packaging =  attributes.get('packaging', '')
-                prod.url = "{}{}".format(self.website, p.get('links').get('self'))
-                prod.price = price.get('perUnit',0)
-                prod.unitOfMeasure = price.get('unitOfMeasure', '')
-                #prod.objects.update(**prodData)
-                prod.save()
-                count += 1
+            totalPage = res.get('meta').get('totalPage')
+            for page in range(1,int(totalPage) + 1):
+                res = scraper.get(self.scrap_api.format(page), headers=headers).text
+                res = json.loads(res)
+                for p in res.get('data', {}):
+                    attributes = p.get('attributes', {})
+                    price = attributes.get('price', {})
+                    prod, created = Product.objects.get_or_create(
+                        barcode=attributes.get('ean'))
+                    
+                    prod.name = attributes.get('title', '')
+                        # availability= ,
+                    prod.packaging =  attributes.get('packaging', '')
+                    prod.url = "{}{}".format(self.website, p.get('links').get('self'))
+                    prod.price = price.get('perUnit',0)
+                    prod.unitOfMeasure = price.get('unitOfMeasure', '')
+                    #prod.objects.update(**prodData)
+                    prod.save()
+                    count += 1
 
         return count
 
