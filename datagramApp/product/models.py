@@ -20,11 +20,11 @@ class Chain(SeqNamedMixin):
     scrap_api = models.URLField(verbose_name="Scrap API", max_length=200, default='')
 
     def do_scrap_products(self):
+        count = 0
         if self.scrap_api:
             scraper = cloudscraper.create_scraper()
             res = scraper.get(self.scrap_api, headers=headers).text
             res = json.loads(res)
-            count = 0
             for p in res.get('data', {}):
                 attributes = p.get('attributes', {})
                 price = attributes.get('price', {})
