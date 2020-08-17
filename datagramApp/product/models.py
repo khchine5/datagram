@@ -69,7 +69,7 @@ class Store(SeqNamedMixin):
 class ProductStores(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    startDate = models.DateField(verbose_name="Start date")
+    startDate = models.DateField(verbose_name="Start date",auto_now_add=True)
 
 
 class Categories(SeqNamedMixin):
